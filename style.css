@@ -1,0 +1,230 @@
+/* VARIABLES */
+:root {
+    --primary-color: #ffffff;
+    --text-color: #000;
+    --green: #1d1;
+    --yellow: #fae12a;
+    --blue: #45f;
+    --grey: #969696; 
+}
+
+/* ELEMENTS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--primary-color);
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin: 20px;
+    font-size: 40px;
+}
+
+p {
+    font-size: 100px;
+    margin-bottom: 20px;
+}
+
+/* SECTIONS */
+
+.matchTimer {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreTracker {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BUTTONS */
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+} 
+
+/* timerBtn Class */
+
+.timerBtn {
+    width: 180px;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    margin: 10px 10px;
+    background-color: var(--primary-color);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.timerBtn.greenBtn:hover {
+    background: var(--green);
+    color: var(--text-color);
+}
+
+.timerBtn.redBtn:hover {
+    background: var(--yellow);
+    color: var(--text-color);
+}
+
+.timerBtn.blueBtn:hover {
+    background: var(--blue);
+    color: var(--text-color);
+}
+
+/* wideBtn Class */
+
+.columnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wideBtn {
+    width: 590px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    background-color: var(--primary-color);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.wideBtn:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+#clearBtn.redBtn:hover {
+    background-color: var(--yellow);
+    color: var(--text-color);
+}
+
+#timerSwitch.whiteBtn:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+/* Button color classes */
+
+.greenBtn {
+    border: 4px solid var(--green);
+    color: var(--green);
+}
+
+.redBtn {
+    border: 4px solid var(--yellow);
+    color: var(--yellow);
+}
+
+.blueBtn {
+    border: 4px solid var(--blue);
+    color: var(--blue);
+}
+
+.whiteBtn {
+    border: 4px solid var(--text-color);
+    color: var(--text-color);
+}
+
+
+/* Score Tracker */
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.inputValueHolder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px
+}
+
+.inputValue {
+    margin-left: 30px;
+    background: var(--yellow);
+    width: 100px;
+    height: 40px;
+    font-size: 32px;
+    border: 0.2px solid var(--yellow);
+    text-align: center;
+    color:#000;
+    border-radius: 8px;
+}
+
+.inputValueGroup {
+    margin-left: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: 32px;
+    text-align: center;
+    color:#000;
+}
+
+img.logo {
+    margin-top: 10px;
+    width: 200px;
+    height: auto;
+}
+
+.point-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type='checkbox'] {
+    height: 100%;
+    width: 100%;
+}
+
+/* #t1Score {
+    background-color: var(--grey);
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+} */
+
+/* #t2Score {;
+    background-color: var(--grey);
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+} */
+
+h2.title{
+    text-align: center;
+    font-size: 32px;
+    color: darkslategrey;
+}
