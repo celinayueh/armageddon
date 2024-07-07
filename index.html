@@ -29,71 +29,42 @@
         </div>
     </div>
 <div id="scoreContainer" class="scoreTracker">
-    <h1>Lunar Rescue Score Calculator</h1>
+    <h1>Armageddon Score Calculator</h1>
     <div class="inputContainer">
-    <h2 class="title">Moon Pieces</h2>
+    <h2 class="title">Blue Team</h2>
+        <h3>TNT</h3>
         <div class="inputSection">
-            <label for="none-restored">No Moon Pieces Restored</label>
+            <label for="partial-tnt-t1">Partially Placed TNT</label>
+            <input type="number" id="partial-tnt-t1" class="piece-count inputValue" placeholder="" min="0" max="2">
+        </div>
+        <div class="inputSection">
+            <label for="full-tnt-t1">Fully Placed TNT</label>
+            <input type="number" id="full-tnt-t1" class="piece-count inputValue" placeholder="" min="0" max="2">
+        </div>
+        <div class="inputSection">
+            <label for="doubler-t1">Doubler Scored?</label>
             <div class="point-group inputValueGroup">
-                <input type="checkbox" id="none-restored" class="inputValue checkbox" value="1" onclick="check(this);">
+                <input type="checkbox" id="doubler-t2" class="inputValue checkbox" value="1" onclick="check(this);">
             </div>
         </div>
-        
+        <h3>Field Samples</h3>
         <div class="inputSection">
-            <label for="quarter">Quarter (1/4) Restored</label>
-            <div class="point-group inputValueGroup">
-                <input type="checkbox" id="quarter" class="inputValue checkbox" value="1" onclick="check(this);">
-            </div>
+            <label for="unstacked-t1">Unstacked Field Samples</label>
+            <input type="number" id="unstacked-t1" class="piece-count inputValue" placeholder="" min="0" max="9">
         </div>
-        
         <div class="inputSection">
-            <label for="half">Half (1/2) Restored</label>
-            <div class="point-group inputValueGroup">
-                <input type="checkbox" id="half" class="inputValue checkbox" value="1" onclick="check(this);">
-            </div>
+            <label for="2-stack-t1">Field Sample Stacks of 2</label>
+            <input type="number" id="2-stack-t1" class="piece-count inputValue" placeholder="" min="0" max="4">
         </div>
-        
         <div class="inputSection">
-            <label for="three-quarters">Three Quarters (3/4) Restored</label>
-            <div class="point-group inputValueGroup">
-                <input type="checkbox" id="three-quarters" class="inputValue checkbox" value="1" onclick="check(this);">
-            </div>
+            <label for="3-stack-t1">Field Sample Stacks of 2 Field Samples</label>
+            <input type="number" id="3-stack-t1" class="piece-count inputValue" placeholder="" min="0" max="3">
         </div>
-        
         <div class="inputSection">
-            <label for="full">Fully Restored</label>
-            <div class="point-group inputValueGroup">
-                <input type="checkbox" id="full" class="inputValue checkbox" value="1" onclick="check(this);">
-            </div>
+            <label for="endgame-t1">Number of Robots in Safe Zone</label>
+            <input type="number" id="endgame-t1" class="piece-count inputValue" placeholder="" min="0" max="2">
         </div>
-        
-        <div class="inputSection">
-            <label for="piece-count">Total Number of Moon Pieces on Platform</label>
-            <input type="number" id="piece-count" class="piece-count inputValue" placeholder="" min="0" max="4">
-        </div>
-
-        <br>
-        <h2 class="title">Turtles and Switches</h2>
-
-        <div class="inputSection">
-            <label for="turtle-count">Total Number of Turtles Scored</label>
-            <input type="number" id="turtle-count" class="turtle-count inputValue" placeholder="" min="0" max="3">
-        </div>
-        
-        <div class="inputSection">
-            <label for="coop-switch">Co-op Switch Scoring?</label>
-            <div class="point-group inputValueGroup">
-                <input type="checkbox" id="coop-switch" class="inputValue checkbox" value="1">
-            </div>
-        </div>
-        
-        <div class="inputSection">
-            <label for="switch-count">Total Number of Co-op Switches</label>
-            <input type="number" id="switch-count" class="switch-count inputValue" placeholder="" min="0" max="2">
-        </div>
-    </div>
-
-    <h1 id="score">Score: 0</h1>
+    <h1 id="score-t1">Score: 0</h1>
     <div class="columnContainer">
         <button id="clearBtn" class="wideBtn redBtn" type="button">Clear Fields</button>
         <button id="timerSwitch" class="wideBtn whiteBtn" type="button">Match Timer</button>
