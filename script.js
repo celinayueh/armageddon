@@ -56,11 +56,11 @@ function timerStop() {
 function timerReset() {
     timerReady = true;
     clearInterval(interval);
-    timeRemaining = 64;
-    if (timeRemaining <= 60) {
+    timeRemaining = 124;
+    if (timeRemaining <= 120) {
         timerText.innerHTML = timeRemaining.toString() + " seconds";
-    } else if (timeRemaining >= 60) {
-        timerText.innerHTML = "60 seconds";
+    } else if (timeRemaining >= 120) {
+        timerText.innerHTML = "120 seconds";
     }
 }
 
