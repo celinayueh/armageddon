@@ -1,7 +1,7 @@
 // awesome sauce
 
 // variables
-let timeRemaining = 64; // default time in seconds
+let timeRemaining = 124; // default time in seconds
 let timerReady = true; // debounce for start button
 let interval; // id for setInterval
 let switchSoundsEnabled = false;
@@ -17,7 +17,7 @@ let lastCount = new Audio("audio/final countdown.mp3");
 
 //Match timer
 function timerCount() {
-    if ((timeRemaining == 26 || timeRemaining == 36) && switchSoundsEnabled) {
+    if ((timeRemaining == 56 || timeRemaining == 66) && switchSoundsEnabled) {
         switchSound.play(); // Play switch side sounds
     }
     if (timeRemaining <= 1) { // Regular countdown
@@ -27,7 +27,7 @@ function timerCount() {
     }
 
     timeRemaining -= 1;
-    if (timeRemaining <= 60) {
+    if (timeRemaining <= 120) {
         if (!(timerReady)) {
             timerText.innerHTML = timeRemaining.toString() + " seconds";
         }
@@ -82,85 +82,95 @@ function showScore() {
 
 //Score calculator
 
-function calculateScores(inputRef, type) {
-    if (type == 1) { // input type is numerical
-        if (inputRef) { // ensure values only within the declared min and max are inputted
-            const minVal = inputRef.getAttribute("min");
-            const maxVal = inputRef.getAttribute("max");
-            const defVal = inputRef.getAttribute("placeholder");
+function calculateScores(inputRef) {
+    if (inputRef) {
+        const minVal = inputRef.getAttribute("min");
+        const maxVal = inputRef.getAttribute("max");
+        const defVal = inputRef.getAttribute("placeholder");
 
-            var minNum = parseInt(minVal);
-            var maxNum = parseInt(maxVal);
+        var minNum = parseInt(minVal);
+        var maxNum = parseInt(maxVal);
 
-            if (parseInt(inputRef.value) > maxNum || parseInt(inputRef.value) < minNum) {
-                inputRef.value = defVal;
-            }
+        if (parseInt(inputRef.value) > maxNum || parseInt(inputRef.value) < minNum) {
+            inputRef.value = defVal;
         }
     }
 
-    let score = 0;
+    let score1 = 0;
+    let score2 = 0;
 
-    let scoreInvalid = false;
-    const pieceCount = document.getElementById("piece-count").value;
-    const turtleCount = document.getElementById("turtle-count").value;
-    const coopSwitch = document.getElementById("coop-switch");
-    const switchCount = document.getElementById("switch-count").value;
-    const quarter = document.getElementById("quarter");
-    const half = document.getElementById("half");
-    const threeQuarters = document.getElementById("three-quarters");
-    const full = document.getElementById("full");
+    const partial1 = parseInt(document.getElementById("partial-tnt-t1").value) || 0;
+    const full1 = parseInt(document.getElementById("full-tnt-t1").value) || 0;
+    const doubler1 = document.getElementById("doubler-t1").checked ? 1 : 0;
+    const unstacked1 = parseInt(document.getElementById("unstacked-t1").value) || 0;
+    const twoStack1 = parseInt(document.getElementById("2-stack-t1").value) || 0;
+    const threeStack1 = parseInt(document.getElementById("3-stack-t1").value) || 0;
+    const endgame1 = (document.getElementById("endgame-t1").value) || 0;
 
-    let matchData = [
-        pieceCount,
-        turtleCount,
-        switchCount,
+    const partial2 = parseInt(document.getElementById("partial-tnt-t2").value) || 0;
+    const full2 = parseInt(document.getElementById("full-tnt-t2").value) || 0;
+    const doubler2 = document.getElementById("doubler-t2").checked ? 1 : 0;
+    const unstacked2 = parseInt(document.getElementById("unstacked-t2").value) || 0;
+    const twoStack2 = parseInt(document.getElementById("2-stack-t2").value) || 0;
+    const threeStack2 = parseInt(document.getElementById("3-stack-t2").value) || 0;
+    const endgame2 = (document.getElementById("endgame-t2").value) || 0;
+
+    const scoreKey = [1, 2, 1, 1, 2, 3, 5];
+
+    let matchData1 = [
+        partial1,
+        full1,
+        doubler1,
+        unstacked1,
+        twoStack1,
+        threeStack1,
+        endgame1
     ];
 
+    let matchData2 = [
+        partial2,
+        full2,
+        doubler2,
+        unstacked2,
+        twoStack2,
+        threeStack2,
+        endgame2
+    ];
 
-    matchData = matchData.map(function (currentElement) {
-        return currentElement === "" ? 0 : parseInt(currentElement);
-    });
-
-    if (matchData[0] !== 0 ){
-        if (quarter.checked) {
-            score += (1 + matchData[0]);
-        }
-        else if (half.checked) {
-            score += (4 + matchData[0]);
-        }
-        else if (threeQuarters.checked) {
-            score += (9 + matchData[0]);
-        }
-        else if (full.checked) {
-            score += 20;
-        }
-        else {
-            score += matchData[0];
+    for (let i = 0; i < scoreKey.length; i++) {
+        if (i === 2) { // Handle doubler
+            score1 = score1 * (doubler1 + 1);
+            score2 = score2 * (doubler2 + 1);
+        } else {
+            score1 += matchData1[i] * scoreKey[i];
+            score2 += matchData2[i] * scoreKey[i];
         }
     }
 
-    if (coopSwitch.checked) {
-        score += matchData[2] * 10;
-    }
-    else {
-        score += matchData[2] * 5;
-    }
+    document.getElementById("score-t1").style.color = "black";
+    document.getElementById("score-t1").innerHTML = "Score: " + score1.toString();
 
-    score += turtleCount * 3;
-
-    document.getElementById("score").style.color = "black";
-    document.getElementById("score").innerHTML = "Score: " + score.toString();
+    document.getElementById("score-t2").style.color = "black";
+    document.getElementById("score-t2").innerHTML = "Score: " + score2.toString();
 }
 
 function clearFields() {
-    document.getElementById("piece-count").value = "";
-    document.getElementById("turtle-count").value = "";
-    document.getElementById("coop-switch").checked = false;
-    document.getElementById("switch-count").value = "";
-    document.getElementById("quarter").checked = false;
-    document.getElementById("half").checked = false;
-    document.getElementById("three-quarters").checked = false;
-    document.getElementById("full").checked = false;
+    document.getElementById("partial-tnt-t1").value = "";
+    document.getElementById("full-tnt-t1").value = "";
+    document.getElementById("doubler-t1").checked = false;
+    document.getElementById("unstacked-t1").value = "";
+    document.getElementById("2-stack-t1").value = "";
+    document.getElementById("3-stack-t1").value = "";
+    document.getElementById("endgame-t1").checked = false;
+
+    document.getElementById("partial-tnt-t2").value = "";
+    document.getElementById("full-tnt-t2").value = "";
+    document.getElementById("doubler-t2").checked = false;
+    document.getElementById("unstacked-t2").value = "";
+    document.getElementById("2-stack-t2").value = "";
+    document.getElementById("3-stack-t2").value = "";
+    document.getElementById("endgame-t2").checked = false;
+
     calculateScores();
 }
 
@@ -180,14 +190,22 @@ window.addEventListener("DOMContentLoaded", function () {
     const timerText = this.document.getElementById("timerText");
 
     // score variables
-    const pieceCount = document.getElementById("piece-count");
-    const turtleCount = document.getElementById("turtle-count");
-    const coopSwitch = document.getElementById("coop-switch");
-    const switchCount = document.getElementById("switch-count");
-    const quarter = document.getElementById("quarter");
-    const half = document.getElementById("half");
-    const threeQuarters = document.getElementById("three-quarters");
-    const full = document.getElementById("full");
+    const partial1 = document.getElementById("partial-tnt-t1");
+    const full1 = document.getElementById("full-tnt-t1");
+    const doubler1 = document.getElementById("doubler-t1");
+    const unstacked1 = document.getElementById("unstacked-t1");
+    const twoStack1 = document.getElementById("2-stack-t1");
+    const threeStack1 = document.getElementById("3-stack-t1");
+    const endgame1 = document.getElementById("endgame-t1");
+
+    const partial2 = document.getElementById("partial-tnt-t2");
+    const full2 = document.getElementById("full-tnt-t2");
+    const doubler2 = document.getElementById("doubler-t2");
+    const unstacked2 = document.getElementById("unstacked-t2");
+    const twoStack2 = document.getElementById("2-stack-t2");
+    const threeStack2 = document.getElementById("3-stack-t2");
+    const endgame2 = document.getElementById("endgame-t2");
+
     const clearBtn = document.getElementById("clearBtn");
     const timerSwitch = document.getElementById("timerSwitch");
 
@@ -199,44 +217,35 @@ window.addEventListener("DOMContentLoaded", function () {
         countdownSwitch.addEventListener("click", switchCountdown);
         scoreSwitch.addEventListener("click", showScore);
         // score events
-        pieceCount.addEventListener("keyup", () => calculateScores(pieceCount, 1));
-        pieceCount.addEventListener("change", () => calculateScores(pieceCount, 1));
+        const elements = [
+            { elem: partial1, type: '' },
+            { elem: full1, type: '' },
+            { elem: doubler1, type: 'checkbox' },
+            { elem: unstacked1, type: '' },
+            { elem: twoStack1, type: '' },
+            { elem: threeStack1, type: '' },
+            { elem: endgame1, type: 'checkbox' },
+            { elem: partial2, type: '' },
+            { elem: full2, type: '' },
+            { elem: doubler2, type: 'checkbox' },
+            { elem: unstacked2, type: '' },
+            { elem: twoStack2, type: '' },
+            { elem: threeStack2, type: '' },
+            { elem: endgame2, type: 'checkbox' },
+        ];
 
-        turtleCount.addEventListener("keyup", () => calculateScores(turtleCount, 1));
-        turtleCount.addEventListener("change", () => calculateScores(turtleCount, 1));
-
-        coopSwitch.addEventListener("change", () => calculateScores(coopSwitch, 2));
-
-        switchCount.addEventListener("keyup", () => calculateScores(switchCount, 1));
-        switchCount.addEventListener("change", () => calculateScores(switchCount, 1));
-
-        quarter.addEventListener("change", () => calculateScores(quarter, 2));
-        half.addEventListener("change", () => calculateScores(half, 2));
-        threeQuarters.addEventListener("change", () => calculateScores(threeQuarters, 2));
-        full.addEventListener("change", () => calculateScores(full, 2));
+        elements.forEach(item => {
+            const { elem, type } = item;
+            if (type === "checkbox") {
+                elem.addEventListener("change", () => calculateScores(elem));
+            } else {
+                elem.addEventListener("keyup", () => calculateScores(elem));
+                elem.addEventListener("change", () => calculateScores(elem));
+            }
+        });
 
         // score buttons
-        clearBtn.addEventListener
+        clearBtn.addEventListener("click", clearFields);
         timerSwitch.addEventListener("click", showTimer);
     }
 });
-
-function check(input) {
-
-    var checkboxes = document.getElementsByClassName('checkbox');
-
-    // uncheck previously check button
-    if (input.checked === false) {
-        input.checked = false;
-    }
-    else {
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked === true) {
-                checkboxes[i].checked = false;
-            }
-        }
-
-        input.checked = true;
-    }
-
-}

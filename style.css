@@ -228,3 +228,11 @@ h2.title{
     font-size: 32px;
     color: darkslategrey;
 }
+
+h2.green {
+    color: var(--green);
+}
+
+h2.blue {
+    color: var(--blue);
+}
